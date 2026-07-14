@@ -88,17 +88,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "AI/ML student and aspiring engineer. Projects, skills, certifications, and resume.",
+          "Portfolio of Taufeeq M S — Artificial Intelligence & Machine Learning student, Python developer, and Android developer building intelligent, real-world software.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Taufeeq M S — AI/ML Student & Python Developer" },
+      { name: "twitter:description", content: "Portfolio of Taufeeq M S — Artificial Intelligence & Machine Learning student, Python developer, and Android developer building intelligent, real-world software." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/91480548-dd77-4bb2-94e8-66e62351381d" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/91480548-dd77-4bb2-94e8-66e62351381d" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
