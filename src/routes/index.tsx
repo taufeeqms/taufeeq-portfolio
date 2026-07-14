@@ -889,10 +889,10 @@ function ResumeSection() {
 
 function Contact() {
   const items = [
-    { icon: <Mail className="h-5 w-5" />, label: "Email", value: "taufeeq.ms2007@gmail.com", href: "mailto:taufeeq.ms2007@gmail.com" },
-    { icon: <Phone className="h-5 w-5" />, label: "Phone", value: "+91 8122844807", href: "tel:+918122844807" },
-    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", value: "linkedin.com/in/taufeeq-ms-19aa07377", href: "https://www.linkedin.com/in/taufeeq-ms-19aa07377" },
-    { icon: <Github className="h-5 w-5" />, label: "GitHub", value: "github.com/taufeeqms", href: "https://github.com/taufeeqms" },
+    { icon: <Mail className="h-5 w-5" />, label: "Email", value: "taufeeq.ms2007@gmail.com", href: "mailto:taufeeq.ms2007@gmail.com", external: false },
+    { icon: <Phone className="h-5 w-5" />, label: "Phone", value: "+91 8122844807", href: "tel:+918122844807", external: false },
+    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", value: "linkedin.com/in/taufeeq-ms-19aa07377", href: "https://www.linkedin.com/in/taufeeq-ms-19aa07377", external: true },
+    { icon: <Github className="h-5 w-5" />, label: "GitHub", value: "github.com/taufeeqms", href: "https://github.com/taufeeqms", external: true },
   ];
   return (
     <Section id="contact" eyebrow="Contact" title="Let's build something together" subtitle="Best way to reach me is email. I usually respond within 24 hours.">
@@ -901,19 +901,43 @@ function Contact() {
           <a
             key={c.label}
             href={c.href}
-            target={c.href.startsWith("http") ? "_blank" : undefined}
-            rel="noreferrer"
+            target={c.external ? "_blank" : undefined}
+            rel={c.external ? "noreferrer" : undefined}
             className="reveal group glass flex items-center gap-4 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:text-accent"
           >
             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-accent/15 text-accent transition-transform group-hover:scale-110">
               {c.icon}
             </div>
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="text-xs uppercase tracking-wider text-muted-foreground">{c.label}</div>
               <div className="truncate font-medium">{c.value}</div>
             </div>
+            {c.external && (
+              <ExternalLink className="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+            )}
           </a>
         ))}
+      </div>
+
+      <div className="reveal mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="https://www.linkedin.com/in/taufeeq-ms-19aa07377"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl bg-[#0A66C2] px-6 py-3 font-medium text-white shadow-[0_10px_30px_-10px_rgba(10,102,194,0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-10px_rgba(10,102,194,0.7)]"
+        >
+          <Linkedin className="h-5 w-5" />
+          Visit LinkedIn Profile
+        </a>
+        <a
+          href="https://github.com/taufeeqms"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl glass px-6 py-3 font-medium text-foreground transition-all hover:-translate-y-0.5 hover:text-accent"
+        >
+          <Github className="h-5 w-5" />
+          Visit GitHub Profile
+        </a>
       </div>
     </Section>
   );
