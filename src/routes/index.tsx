@@ -22,7 +22,8 @@ import {
   ShieldCheck,
   Users,
 } from "lucide-react";
-import portrait from "@/assets/portrait.jpg";
+import portraitAsset from "@/assets/profile.jpg.asset.json";
+const portrait = portraitAsset.url;
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -405,16 +406,16 @@ function Hero({ typed }: { typed: string }) {
             className="absolute -inset-6 rounded-[2rem] opacity-70 blur-2xl"
             style={{ background: "var(--gradient-accent)" }}
           />
-          <div className="relative overflow-hidden rounded-[2rem] glass p-2 animate-float-slow">
-            <div className="relative overflow-hidden rounded-[1.6rem]">
+          <div className="relative rounded-full glass p-2 animate-float-slow aspect-square">
+            <div className="relative overflow-hidden rounded-full h-full w-full ring-1 ring-accent/30">
               <img
                 src={portrait}
                 alt="Portrait of Taufeeq M S"
                 width={1024}
                 height={1024}
-                className="h-auto w-full"
+                className="h-full w-full object-cover object-top brightness-110 contrast-105 saturate-105"
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/40 via-transparent to-transparent" />
             </div>
             <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-xl glass px-3 py-2 text-xs">
               <div className="flex items-center gap-2">
