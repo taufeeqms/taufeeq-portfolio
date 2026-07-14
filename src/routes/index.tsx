@@ -384,15 +384,18 @@ function Hero({ typed }: { typed: string }) {
             </a>
           </div>
 
-          <div className="mt-8 flex items-center gap-4 text-muted-foreground">
+          <div className="mt-8 flex flex-wrap items-center gap-4 text-muted-foreground">
             <a aria-label="GitHub" href="https://github.com/taufeeqms" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
               <Github className="h-5 w-5" />
             </a>
-            <a aria-label="LinkedIn" href="https://linkedin.com/in/taufeeqms" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/taufeeq-ms-19aa07377" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
               <Linkedin className="h-5 w-5" />
             </a>
-            <a aria-label="Email" href="mailto:taufeeq.ms@email.com" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+            <a aria-label="Email" href="mailto:taufeeq.ms2007@gmail.com" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
               <Mail className="h-5 w-5" />
+            </a>
+            <a aria-label="Phone" href="tel:+918122844807" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+              <Phone className="h-5 w-5" />
             </a>
             <span className="flex items-center gap-1.5 text-sm">
               <MapPin className="h-4 w-4 text-accent" /> Chennai, India
@@ -886,9 +889,9 @@ function ResumeSection() {
 
 function Contact() {
   const items = [
-    { icon: <Mail className="h-5 w-5" />, label: "Email", value: "taufeeq.ms@email.com", href: "mailto:taufeeq.ms@email.com" },
-    { icon: <Phone className="h-5 w-5" />, label: "Phone", value: "+91-XXXXXXXXXX", href: "tel:+91" },
-    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", value: "linkedin.com/in/taufeeqms", href: "https://linkedin.com/in/taufeeqms" },
+    { icon: <Mail className="h-5 w-5" />, label: "Email", value: "taufeeq.ms2007@gmail.com", href: "mailto:taufeeq.ms2007@gmail.com" },
+    { icon: <Phone className="h-5 w-5" />, label: "Phone", value: "+91 8122844807", href: "tel:+918122844807" },
+    { icon: <Linkedin className="h-5 w-5" />, label: "LinkedIn", value: "linkedin.com/in/taufeeq-ms-19aa07377", href: "https://www.linkedin.com/in/taufeeq-ms-19aa07377" },
     { icon: <Github className="h-5 w-5" />, label: "GitHub", value: "github.com/taufeeqms", href: "https://github.com/taufeeqms" },
   ];
   return (
@@ -927,11 +930,14 @@ function Footer() {
           <a aria-label="GitHub" href="https://github.com/taufeeqms" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
             <Github className="h-4 w-4" />
           </a>
-          <a aria-label="LinkedIn" href="https://linkedin.com/in/taufeeqms" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+          <a aria-label="LinkedIn" href="https://www.linkedin.com/in/taufeeq-ms-19aa07377" target="_blank" rel="noreferrer" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
             <Linkedin className="h-4 w-4" />
           </a>
-          <a aria-label="Email" href="mailto:taufeeq.ms@email.com" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+          <a aria-label="Email" href="mailto:taufeeq.ms2007@gmail.com" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
             <Mail className="h-4 w-4" />
+          </a>
+          <a aria-label="Phone" href="tel:+918122844807" className="rounded-lg p-2 transition-colors hover:bg-white/5 hover:text-accent">
+            <Phone className="h-4 w-4" />
           </a>
         </div>
       </div>
