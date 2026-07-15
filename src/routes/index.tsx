@@ -32,11 +32,8 @@ import {
   X,
   Zap,
 } from "lucide-react";
-import portraitAsset from "@/assets/profile.jpg.asset.json";
-import resumeAsset from "@/assets/resume.pdf.asset.json";
-
-const portrait = portraitAsset.url;
-const RESUME_URL = resumeAsset.url;
+const portrait = "/assets/profile.jpg";
+const RESUME_URL = "/assets/Taufeeq_M_S_Resume.pdf";
 
 export const Route = createFileRoute("/")({
   component: Index,
