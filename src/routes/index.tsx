@@ -845,19 +845,18 @@ function Skills() {
   return (
     <Section id="skills" eyebrow="Technical Skills" title="What I work with" subtitle="Languages, tools and concepts I use to build real software.">
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {cards.map((c, i) => (
+        {cards.map((c) => (
           <div
             key={c.name}
-            className="reveal glass group relative overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_#00F5FF66]"
-            style={{ animation: `float-slow ${6 + (i % 3)}s ease-in-out ${i * 0.3}s infinite` }}
+            className="reveal glass group relative overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-1 hover:border-white/20"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-40"
               style={{ background: "var(--gradient-accent)" }}
             />
             <div className="relative">
-              <div className="mb-3 grid h-11 w-11 place-items-center rounded-xl bg-accent/15 text-accent transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/20 transition-transform duration-500 group-hover:scale-110">
                 {c.icon}
               </div>
               <h3 className="font-semibold" style={{ fontFamily: "var(--font-heading)" }}>{c.name}</h3>
