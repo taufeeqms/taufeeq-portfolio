@@ -501,8 +501,7 @@ function Nav({ active, scrolled, visible }: { active: string; scrolled: boolean;
             href={RESUME_URL}
             download
             {...magneticProps()}
-            className="btn-magnetic hidden items-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF88] transition-all md:inline-flex"
-            style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+            className="btn-magnetic hidden items-center gap-2 rounded-lg bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-all hover:opacity-90 md:inline-flex"
           >
             <Download className="h-4 w-4" /> Resume
           </a>
@@ -1353,8 +1352,7 @@ function ResumeSection() {
               href={RESUME_URL}
               download
               {...magneticProps()}
-              className="btn-magnetic inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF99] transition-shadow hover:shadow-[0_20px_50px_-10px_#00F5FFcc]"
-              style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+              className="btn-magnetic inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 font-medium text-background transition-all hover:opacity-90"
             >
               <Download className="h-5 w-5" /> Download Resume (PDF)
             </a>
