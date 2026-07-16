@@ -630,8 +630,7 @@ function Hero({ typed }: { typed: string }) {
               href={RESUME_URL}
               download
               {...magneticProps()}
-              className="btn-magnetic group inline-flex items-center gap-2 rounded-xl px-5 py-3 font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF99] transition-shadow hover:shadow-[0_20px_50px_-10px_#00F5FFcc]"
-              style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+              className="btn-magnetic group inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 font-medium text-background transition-all hover:opacity-90"
             >
               <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               Download Resume
@@ -639,7 +638,7 @@ function Hero({ typed }: { typed: string }) {
             <a
               href="#contact"
               {...magneticProps()}
-              className="btn-magnetic inline-flex items-center gap-2 rounded-xl glass px-5 py-3 font-medium text-foreground transition-colors hover:text-accent"
+              className="btn-magnetic inline-flex items-center gap-2 rounded-xl glass px-5 py-3 font-medium text-foreground transition-colors hover:border-white/25 hover:text-accent"
             >
               <Mail className="h-4 w-4" />
               Contact Me
