@@ -91,6 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Portfolio of Taufeeq M S — Artificial Intelligence & Machine Learning student, Python developer, and Android developer building intelligent, real-world software.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://taufeeq-ms.vercel.app/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Taufeeq M S — AI/ML Student & Python Developer" },
       { name: "twitter:description", content: "Portfolio of Taufeeq M S — Artificial Intelligence & Machine Learning student, Python developer, and Android developer building intelligent, real-world software." },
@@ -102,6 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "canonical", href: "https://taufeeq-ms.vercel.app/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
