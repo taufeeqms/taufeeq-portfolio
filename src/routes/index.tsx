@@ -258,28 +258,28 @@ function AuroraBackdrop() {
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed -top-32 left-1/2 -z-10 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full opacity-40 blur-3xl animate-aurora"
+        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           background:
-            "radial-gradient(closest-side, #00F5FF55, transparent 70%)",
+            "radial-gradient(closest-side, #38BDF855, transparent 70%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed bottom-[-10rem] right-[-6rem] -z-10 h-[36rem] w-[36rem] rounded-full opacity-40 blur-3xl animate-aurora"
+        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           animationDelay: "-6s",
           background:
-            "radial-gradient(closest-side, #7C3AED55, transparent 70%)",
+            "radial-gradient(closest-side, #7C3AED44, transparent 70%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.05]"
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.035]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #00F5FF 1px, transparent 1px), linear-gradient(to bottom, #00F5FF 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
+            "linear-gradient(to right, #94A3B8 1px, transparent 1px), linear-gradient(to bottom, #94A3B8 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
         }}
