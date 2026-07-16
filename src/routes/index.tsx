@@ -418,8 +418,6 @@ function Index() {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <AuroraBackdrop />
       <NeuralCanvas />
-      <MatrixRain />
-      <CustomCursor />
       <ScrollProgress />
 
       <Nav active={active} scrolled={scrolled} visible={navVisible} />
