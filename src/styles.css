@@ -255,20 +255,7 @@
     0 0 60px -12px color-mix(in oklab, #7C3AED 45%, transparent);
 }
 
-/* Custom cursor */
-@media (pointer: fine) {
-  .cursor-dot, .cursor-ring {
-    position: fixed; top: 0; left: 0; pointer-events: none;
-    z-index: 9999; border-radius: 9999px;
-    transform: translate(-50%, -50%);
-    will-change: transform;
-  }
-  .cursor-dot { width: 6px; height: 6px; background: #00F5FF; box-shadow: 0 0 12px #00F5FF; transition: transform .08s linear; }
-  .cursor-ring { width: 34px; height: 34px; border: 1px solid color-mix(in oklab, #00F5FF 60%, transparent); transition: transform .18s ease, width .2s ease, height .2s ease, border-color .2s ease; mix-blend-mode: screen; }
-  .cursor-ring.is-hover { width: 56px; height: 56px; border-color: #7C3AED; box-shadow: 0 0 30px #7C3AED66; }
-  body { cursor: none; }
-  a, button, [role="button"] { cursor: none; }
-}
+/* Custom cursor removed for a cleaner, native feel */
 
 /* Magnetic button base */
 .btn-magnetic { position: relative; overflow: hidden; }
