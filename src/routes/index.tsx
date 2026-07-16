@@ -258,28 +258,28 @@ function AuroraBackdrop() {
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed -top-32 left-1/2 -z-10 h-[42rem] w-[42rem] -translate-x-1/2 rounded-full opacity-40 blur-3xl animate-aurora"
+        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           background:
-            "radial-gradient(closest-side, #00F5FF55, transparent 70%)",
+            "radial-gradient(closest-side, #38BDF855, transparent 70%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed bottom-[-10rem] right-[-6rem] -z-10 h-[36rem] w-[36rem] rounded-full opacity-40 blur-3xl animate-aurora"
+        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           animationDelay: "-6s",
           background:
-            "radial-gradient(closest-side, #7C3AED55, transparent 70%)",
+            "radial-gradient(closest-side, #7C3AED44, transparent 70%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.05]"
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.035]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #00F5FF 1px, transparent 1px), linear-gradient(to bottom, #00F5FF 1px, transparent 1px)",
-          backgroundSize: "56px 56px",
+            "linear-gradient(to right, #94A3B8 1px, transparent 1px), linear-gradient(to bottom, #94A3B8 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
         }}
@@ -418,8 +418,6 @@ function Index() {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <AuroraBackdrop />
       <NeuralCanvas />
-      <MatrixRain />
-      <CustomCursor />
       <ScrollProgress />
 
       <Nav active={active} scrolled={scrolled} visible={navVisible} />
@@ -503,8 +501,7 @@ function Nav({ active, scrolled, visible }: { active: string; scrolled: boolean;
             href={RESUME_URL}
             download
             {...magneticProps()}
-            className="btn-magnetic hidden items-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF88] transition-all md:inline-flex"
-            style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+            className="btn-magnetic hidden items-center gap-2 rounded-lg bg-foreground px-4 py-1.5 text-sm font-medium text-background transition-all hover:opacity-90 md:inline-flex"
           >
             <Download className="h-4 w-4" /> Resume
           </a>
@@ -592,32 +589,11 @@ function Section({
 /* -------------------------- hero -------------------------- */
 
 function Hero({ typed }: { typed: string }) {
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-  const glowRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    const glow = glowRef.current;
-    if (!wrap || !glow) return;
-    const onMove = (e: MouseEvent) => {
-      const r = wrap.getBoundingClientRect();
-      glow.style.transform = `translate(${e.clientX - r.left - 200}px, ${e.clientY - r.top - 200}px)`;
-    };
-    wrap.addEventListener("mousemove", onMove);
-    return () => wrap.removeEventListener("mousemove", onMove);
-  }, []);
-
   return (
     <section
       id="home"
-      ref={wrapRef}
       className="relative min-h-screen scroll-mt-24 overflow-hidden px-4 pt-32 pb-16"
     >
-      <div
-        ref={glowRef}
-        aria-hidden
-        className="pointer-events-none absolute h-[400px] w-[400px] rounded-full opacity-40 blur-3xl transition-transform duration-200 ease-out"
-        style={{ background: "radial-gradient(closest-side, #00F5FF66, transparent 70%)" }}
-      />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="animate-shimmer-in">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs font-medium text-accent">
@@ -653,8 +629,7 @@ function Hero({ typed }: { typed: string }) {
               href={RESUME_URL}
               download
               {...magneticProps()}
-              className="btn-magnetic group inline-flex items-center gap-2 rounded-xl px-5 py-3 font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF99] transition-shadow hover:shadow-[0_20px_50px_-10px_#00F5FFcc]"
-              style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+              className="btn-magnetic group inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-3 font-medium text-background transition-all hover:opacity-90"
             >
               <Download className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               Download Resume
@@ -662,7 +637,7 @@ function Hero({ typed }: { typed: string }) {
             <a
               href="#contact"
               {...magneticProps()}
-              className="btn-magnetic inline-flex items-center gap-2 rounded-xl glass px-5 py-3 font-medium text-foreground transition-colors hover:text-accent"
+              className="btn-magnetic inline-flex items-center gap-2 rounded-xl glass px-5 py-3 font-medium text-foreground transition-colors hover:border-white/25 hover:text-accent"
             >
               <Mail className="h-4 w-4" />
               Contact Me
@@ -681,21 +656,21 @@ function Hero({ typed }: { typed: string }) {
         </div>
 
         <div className="relative mx-auto w-full max-w-md">
-          {/* animated glowing ring */}
+          {/* soft ambient halo */}
           <div
             aria-hidden
-            className="absolute -inset-6 rounded-full opacity-70 blur-2xl animate-gradient-x"
-            style={{ background: "conic-gradient(from 0deg, #00F5FF, #7C3AED, #00F5FF)" }}
+            className="absolute -inset-10 rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(closest-side, #38BDF833, transparent 70%)" }}
           />
-          <div className="relative rounded-full p-[2px] animate-float-slow aspect-square"
-               style={{ background: "conic-gradient(from 0deg, #00F5FF, #7C3AED, #00F5FF)" }}>
-            <div className="relative overflow-hidden rounded-full h-full w-full bg-background">
+          <div className="relative rounded-full p-[1.5px] animate-float-slow aspect-square"
+               style={{ background: "linear-gradient(140deg, rgba(125,211,252,0.55), rgba(167,139,250,0.35) 45%, rgba(255,255,255,0.06) 70%)" }}>
+            <div className="relative overflow-hidden rounded-full h-full w-full bg-background ring-1 ring-white/5">
               <img
                 src={portrait}
                 alt="Portrait of Taufeeq M S"
                 width={1024}
                 height={1024}
-                className="h-full w-full object-cover object-top brightness-110 contrast-105 saturate-105"
+                className="h-full w-full object-cover object-top"
               />
               <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/50 via-transparent to-transparent" />
             </div>
@@ -869,19 +844,18 @@ function Skills() {
   return (
     <Section id="skills" eyebrow="Technical Skills" title="What I work with" subtitle="Languages, tools and concepts I use to build real software.">
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {cards.map((c, i) => (
+        {cards.map((c) => (
           <div
             key={c.name}
-            className="reveal glass group relative overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_#00F5FF66]"
-            style={{ animation: `float-slow ${6 + (i % 3)}s ease-in-out ${i * 0.3}s infinite` }}
+            className="reveal glass group relative overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:-translate-y-1 hover:border-white/20"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-70"
+              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-40"
               style={{ background: "var(--gradient-accent)" }}
             />
             <div className="relative">
-              <div className="mb-3 grid h-11 w-11 place-items-center rounded-xl bg-accent/15 text-accent transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
+              <div className="mb-3 grid h-11 w-11 place-items-center rounded-xl bg-accent/10 text-accent ring-1 ring-accent/20 transition-transform duration-500 group-hover:scale-110">
                 {c.icon}
               </div>
               <h3 className="font-semibold" style={{ fontFamily: "var(--font-heading)" }}>{c.name}</h3>
@@ -1378,8 +1352,7 @@ function ResumeSection() {
               href={RESUME_URL}
               download
               {...magneticProps()}
-              className="btn-magnetic inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium text-[#050816] shadow-[0_10px_30px_-10px_#00F5FF99] transition-shadow hover:shadow-[0_20px_50px_-10px_#00F5FFcc]"
-              style={{ background: "linear-gradient(120deg, #00F5FF, #7C3AED)" }}
+              className="btn-magnetic inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 font-medium text-background transition-all hover:opacity-90"
             >
               <Download className="h-5 w-5" /> Download Resume (PDF)
             </a>
