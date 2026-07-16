@@ -590,32 +590,11 @@ function Section({
 /* -------------------------- hero -------------------------- */
 
 function Hero({ typed }: { typed: string }) {
-  const wrapRef = useRef<HTMLDivElement | null>(null);
-  const glowRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    const wrap = wrapRef.current;
-    const glow = glowRef.current;
-    if (!wrap || !glow) return;
-    const onMove = (e: MouseEvent) => {
-      const r = wrap.getBoundingClientRect();
-      glow.style.transform = `translate(${e.clientX - r.left - 200}px, ${e.clientY - r.top - 200}px)`;
-    };
-    wrap.addEventListener("mousemove", onMove);
-    return () => wrap.removeEventListener("mousemove", onMove);
-  }, []);
-
   return (
     <section
       id="home"
-      ref={wrapRef}
       className="relative min-h-screen scroll-mt-24 overflow-hidden px-4 pt-32 pb-16"
     >
-      <div
-        ref={glowRef}
-        aria-hidden
-        className="pointer-events-none absolute h-[400px] w-[400px] rounded-full opacity-40 blur-3xl transition-transform duration-200 ease-out"
-        style={{ background: "radial-gradient(closest-side, #00F5FF66, transparent 70%)" }}
-      />
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="animate-shimmer-in">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs font-medium text-accent">
@@ -679,21 +658,21 @@ function Hero({ typed }: { typed: string }) {
         </div>
 
         <div className="relative mx-auto w-full max-w-md">
-          {/* animated glowing ring */}
+          {/* soft ambient halo */}
           <div
             aria-hidden
-            className="absolute -inset-6 rounded-full opacity-70 blur-2xl animate-gradient-x"
-            style={{ background: "conic-gradient(from 0deg, #00F5FF, #7C3AED, #00F5FF)" }}
+            className="absolute -inset-10 rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(closest-side, #38BDF833, transparent 70%)" }}
           />
-          <div className="relative rounded-full p-[2px] animate-float-slow aspect-square"
-               style={{ background: "conic-gradient(from 0deg, #00F5FF, #7C3AED, #00F5FF)" }}>
-            <div className="relative overflow-hidden rounded-full h-full w-full bg-background">
+          <div className="relative rounded-full p-[1.5px] animate-float-slow aspect-square"
+               style={{ background: "linear-gradient(140deg, rgba(125,211,252,0.55), rgba(167,139,250,0.35) 45%, rgba(255,255,255,0.06) 70%)" }}>
+            <div className="relative overflow-hidden rounded-full h-full w-full bg-background ring-1 ring-white/5">
               <img
                 src={portrait}
                 alt="Portrait of Taufeeq M S"
                 width={1024}
                 height={1024}
-                className="h-full w-full object-cover object-top brightness-110 contrast-105 saturate-105"
+                className="h-full w-full object-cover object-top"
               />
               <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-t from-background/50 via-transparent to-transparent" />
             </div>
