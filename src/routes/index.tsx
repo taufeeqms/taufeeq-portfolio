@@ -33,7 +33,7 @@ import {
   Zap,
 } from "lucide-react";
 const portrait = "/assets/profile.jpg";
-const RESUME_URL = "/assets/Taufeeq_M_S_Resume.pdf";
+const RESUME_URL = "/resume.pdf";
 
 export const Route = createFileRoute("/")({
   component: Index,
