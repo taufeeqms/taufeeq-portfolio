@@ -253,10 +253,11 @@ function AuroraBackdrop() {
     <>
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10"
+        className="pointer-events-none fixed inset-0 -z-10 animate-bg-shift"
         style={{
           background:
-            "radial-gradient(ellipse 90% 60% at 50% -10%, rgba(56,189,248,0.22), transparent 60%), radial-gradient(ellipse 70% 50% at 90% 15%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(ellipse 70% 50% at 5% 85%, rgba(0,245,255,0.18), transparent 60%), linear-gradient(180deg, #030612 0%, #050816 40%, #06102a 100%)",
+            "radial-gradient(ellipse 90% 60% at 50% -10%, rgba(56,189,248,0.30), transparent 60%), radial-gradient(ellipse 70% 50% at 90% 15%, rgba(124,58,237,0.22), transparent 60%), radial-gradient(ellipse 70% 50% at 5% 85%, rgba(0,245,255,0.22), transparent 60%), linear-gradient(135deg, #02040d 0%, #050816 35%, #071231 70%, #030a1f 100%)",
+          backgroundSize: "200% 200%, 200% 200%, 200% 200%, 200% 200%",
         }}
       />
       <div
