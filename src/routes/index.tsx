@@ -344,12 +344,20 @@ function CustomCursor() {
     let raf = 0;
     const onMove = (e: MouseEvent) => {
       mx = e.clientX; my = e.clientY;
-      if (dot.current) dot.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+      if (dot.current) {
+        dot.current.style.left = `${mx}px`;
+        dot.current.style.top = `${my}px`;
+        dot.current.style.transform = `translate(-50%, -50%)`;
+      }
     };
     const tick = () => {
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
-      if (ring.current) ring.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+      if (ring.current) {
+        ring.current.style.left = `${rx}px`;
+        ring.current.style.top = `${ry}px`;
+        ring.current.style.transform = `translate(-50%, -50%)`;
+      }
       raf = requestAnimationFrame(tick);
     };
     const onOver = (e: MouseEvent) => {
