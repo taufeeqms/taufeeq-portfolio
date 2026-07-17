@@ -254,37 +254,82 @@ function AuroraBackdrop() {
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-hero)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           background:
-            "radial-gradient(closest-side, #38BDF855, transparent 70%)",
+            "radial-gradient(ellipse 90% 60% at 50% -10%, rgba(56,189,248,0.22), transparent 60%), radial-gradient(ellipse 70% 50% at 90% 15%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(ellipse 70% 50% at 5% 85%, rgba(0,245,255,0.18), transparent 60%), linear-gradient(180deg, #030612 0%, #050816 40%, #06102a 100%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl animate-aurora"
+        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-50 blur-3xl animate-aurora"
+        style={{
+          background:
+            "radial-gradient(closest-side, #00F5FF66, #38BDF833 40%, transparent 75%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-40 blur-3xl animate-aurora"
         style={{
           animationDelay: "-6s",
           background:
-            "radial-gradient(closest-side, #7C3AED44, transparent 70%)",
+            "radial-gradient(closest-side, #7C3AED66, #1E3A8A33 45%, transparent 75%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.035]"
+        className="pointer-events-none fixed top-1/3 left-[-10rem] -z-10 h-[32rem] w-[32rem] rounded-full opacity-30 blur-3xl animate-aurora"
+        style={{
+          animationDelay: "-3s",
+          background: "radial-gradient(closest-side, #1D4ED866, transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #94A3B8 1px, transparent 1px), linear-gradient(to bottom, #94A3B8 1px, transparent 1px)",
+            "linear-gradient(to right, #38BDF8 1px, transparent 1px), linear-gradient(to bottom, #38BDF8 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
         }}
       />
+      <FloatingParticles />
     </>
+  );
+}
+
+function FloatingParticles() {
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 22 }).map((_, i) => ({
+        left: Math.random() * 100,
+        delay: Math.random() * 12,
+        duration: 14 + Math.random() * 12,
+        size: 2 + Math.random() * 3,
+        hue: i % 3 === 0 ? "#7C3AED" : "#00F5FF",
+      })),
+    [],
+  );
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="absolute bottom-0 rounded-full"
+          style={{
+            left: `${p.left}%`,
+            width: p.size,
+            height: p.size,
+            background: p.hue,
+            boxShadow: `0 0 ${p.size * 4}px ${p.hue}`,
+            opacity: 0.55,
+            animation: `particle-drift ${p.duration}s linear ${p.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 
