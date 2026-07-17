@@ -254,37 +254,82 @@ function AuroraBackdrop() {
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10"
-        style={{ backgroundImage: "var(--gradient-hero)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-25 blur-3xl animate-aurora"
         style={{
           background:
-            "radial-gradient(closest-side, #38BDF855, transparent 70%)",
+            "radial-gradient(ellipse 90% 60% at 50% -10%, rgba(56,189,248,0.22), transparent 60%), radial-gradient(ellipse 70% 50% at 90% 15%, rgba(124,58,237,0.18), transparent 60%), radial-gradient(ellipse 70% 50% at 5% 85%, rgba(0,245,255,0.18), transparent 60%), linear-gradient(180deg, #030612 0%, #050816 40%, #06102a 100%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-25 blur-3xl animate-aurora"
+        className="pointer-events-none fixed -top-40 left-1/2 -z-10 h-[46rem] w-[46rem] -translate-x-1/2 rounded-full opacity-50 blur-3xl animate-aurora"
+        style={{
+          background:
+            "radial-gradient(closest-side, #00F5FF66, #38BDF833 40%, transparent 75%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed bottom-[-12rem] right-[-8rem] -z-10 h-[40rem] w-[40rem] rounded-full opacity-40 blur-3xl animate-aurora"
         style={{
           animationDelay: "-6s",
           background:
-            "radial-gradient(closest-side, #7C3AED44, transparent 70%)",
+            "radial-gradient(closest-side, #7C3AED66, #1E3A8A33 45%, transparent 75%)",
         }}
       />
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.035]"
+        className="pointer-events-none fixed top-1/3 left-[-10rem] -z-10 h-[32rem] w-[32rem] rounded-full opacity-30 blur-3xl animate-aurora"
+        style={{
+          animationDelay: "-3s",
+          background: "radial-gradient(closest-side, #1D4ED866, transparent 70%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 -z-10 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #94A3B8 1px, transparent 1px), linear-gradient(to bottom, #94A3B8 1px, transparent 1px)",
+            "linear-gradient(to right, #38BDF8 1px, transparent 1px), linear-gradient(to bottom, #38BDF8 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
         }}
       />
+      <FloatingParticles />
     </>
+  );
+}
+
+function FloatingParticles() {
+  const particles = useMemo(
+    () =>
+      Array.from({ length: 22 }).map((_, i) => ({
+        left: Math.random() * 100,
+        delay: Math.random() * 12,
+        duration: 14 + Math.random() * 12,
+        size: 2 + Math.random() * 3,
+        hue: i % 3 === 0 ? "#7C3AED" : "#00F5FF",
+      })),
+    [],
+  );
+  return (
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      {particles.map((p, i) => (
+        <span
+          key={i}
+          className="absolute bottom-0 rounded-full"
+          style={{
+            left: `${p.left}%`,
+            width: p.size,
+            height: p.size,
+            background: p.hue,
+            boxShadow: `0 0 ${p.size * 4}px ${p.hue}`,
+            opacity: 0.55,
+            animation: `particle-drift ${p.duration}s linear ${p.delay}s infinite`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 
@@ -299,12 +344,20 @@ function CustomCursor() {
     let raf = 0;
     const onMove = (e: MouseEvent) => {
       mx = e.clientX; my = e.clientY;
-      if (dot.current) dot.current.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
+      if (dot.current) {
+        dot.current.style.left = `${mx}px`;
+        dot.current.style.top = `${my}px`;
+        dot.current.style.transform = `translate(-50%, -50%)`;
+      }
     };
     const tick = () => {
       rx += (mx - rx) * 0.18;
       ry += (my - ry) * 0.18;
-      if (ring.current) ring.current.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+      if (ring.current) {
+        ring.current.style.left = `${rx}px`;
+        ring.current.style.top = `${ry}px`;
+        ring.current.style.transform = `translate(-50%, -50%)`;
+      }
       raf = requestAnimationFrame(tick);
     };
     const onOver = (e: MouseEvent) => {
@@ -418,7 +471,9 @@ function Index() {
     <div className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       <AuroraBackdrop />
       <NeuralCanvas />
+      <MatrixRain />
       <ScrollProgress />
+      <CustomCursor />
 
       <Nav active={active} scrolled={scrolled} visible={navVisible} />
 
@@ -951,23 +1006,63 @@ const PROJECTS: Project[] = [
 
 function TiltCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const target = useRef({ rx: 0, ry: 0, mx: 50, my: 50 });
+  const current = useRef({ rx: 0, ry: 0, mx: 50, my: 50 });
+  const raf = useRef(0);
+  const running = useRef(false);
+  const loop = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const t = target.current, c = current.current;
+    c.rx += (t.rx - c.rx) * 0.12;
+    c.ry += (t.ry - c.ry) * 0.12;
+    c.mx += (t.mx - c.mx) * 0.15;
+    c.my += (t.my - c.my) * 0.15;
+    el.style.transform = `perspective(1100px) rotateX(${c.rx}deg) rotateY(${c.ry}deg) translateY(${t.rx === 0 && t.ry === 0 ? 0 : -6}px)`;
+    el.style.setProperty("--mx", `${c.mx}%`);
+    el.style.setProperty("--my", `${c.my}%`);
+    if (
+      Math.abs(t.rx - c.rx) > 0.02 ||
+      Math.abs(t.ry - c.ry) > 0.02 ||
+      Math.abs(t.mx - c.mx) > 0.1 ||
+      Math.abs(t.my - c.my) > 0.1
+    ) {
+      raf.current = requestAnimationFrame(loop);
+    } else {
+      running.current = false;
+    }
+  }, []);
+  const kick = useCallback(() => {
+    if (running.current) return;
+    running.current = true;
+    raf.current = requestAnimationFrame(loop);
+  }, [loop]);
   const onMove = useCallback((e: React.MouseEvent) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 8}deg) translateY(-4px)`;
-  }, []);
+    target.current.ry = x * 7;
+    target.current.rx = -y * 5;
+    target.current.mx = (x + 0.5) * 100;
+    target.current.my = (y + 0.5) * 100;
+    kick();
+  }, [kick]);
   const onLeave = useCallback(() => {
-    if (ref.current) ref.current.style.transform = "";
-  }, []);
+    target.current.rx = 0;
+    target.current.ry = 0;
+    target.current.mx = 50;
+    target.current.my = 50;
+    kick();
+  }, [kick]);
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
   return (
     <div
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`transition-transform duration-300 will-change-transform ${className}`}
+      className={`tilt-card group/tilt relative will-change-transform ${className}`}
     >
       {children}
     </div>
