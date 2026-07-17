@@ -998,23 +998,63 @@ const PROJECTS: Project[] = [
 
 function TiltCard({ children, className = "" }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
+  const target = useRef({ rx: 0, ry: 0, mx: 50, my: 50 });
+  const current = useRef({ rx: 0, ry: 0, mx: 50, my: 50 });
+  const raf = useRef(0);
+  const running = useRef(false);
+  const loop = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const t = target.current, c = current.current;
+    c.rx += (t.rx - c.rx) * 0.12;
+    c.ry += (t.ry - c.ry) * 0.12;
+    c.mx += (t.mx - c.mx) * 0.15;
+    c.my += (t.my - c.my) * 0.15;
+    el.style.transform = `perspective(1100px) rotateX(${c.rx}deg) rotateY(${c.ry}deg) translateY(${t.rx === 0 && t.ry === 0 ? 0 : -6}px)`;
+    el.style.setProperty("--mx", `${c.mx}%`);
+    el.style.setProperty("--my", `${c.my}%`);
+    if (
+      Math.abs(t.rx - c.rx) > 0.02 ||
+      Math.abs(t.ry - c.ry) > 0.02 ||
+      Math.abs(t.mx - c.mx) > 0.1 ||
+      Math.abs(t.my - c.my) > 0.1
+    ) {
+      raf.current = requestAnimationFrame(loop);
+    } else {
+      running.current = false;
+    }
+  }, []);
+  const kick = useCallback(() => {
+    if (running.current) return;
+    running.current = true;
+    raf.current = requestAnimationFrame(loop);
+  }, [loop]);
   const onMove = useCallback((e: React.MouseEvent) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(1000px) rotateX(${-y * 6}deg) rotateY(${x * 8}deg) translateY(-4px)`;
-  }, []);
+    target.current.ry = x * 7;
+    target.current.rx = -y * 5;
+    target.current.mx = (x + 0.5) * 100;
+    target.current.my = (y + 0.5) * 100;
+    kick();
+  }, [kick]);
   const onLeave = useCallback(() => {
-    if (ref.current) ref.current.style.transform = "";
-  }, []);
+    target.current.rx = 0;
+    target.current.ry = 0;
+    target.current.mx = 50;
+    target.current.my = 50;
+    kick();
+  }, [kick]);
+  useEffect(() => () => cancelAnimationFrame(raf.current), []);
   return (
     <div
       ref={ref}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      className={`transition-transform duration-300 will-change-transform ${className}`}
+      className={`tilt-card group/tilt relative will-change-transform ${className}`}
     >
       {children}
     </div>
