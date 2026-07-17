@@ -289,11 +289,6 @@
   border-color: rgba(0,245,255,0.9);
   background: radial-gradient(circle, rgba(0,245,255,0.14), transparent 70%);
   box-shadow: 0 0 28px rgba(0,245,255,0.55), inset 0 0 16px rgba(124,58,237,0.25);
-  animation: cursor-pulse 1.6s ease-in-out infinite;
-}
-@keyframes cursor-pulse {
-  0%, 100% { transform: translate(var(--tx,0), var(--ty,0)) translate(-50%,-50%) scale(1); }
-  50% { transform: translate(var(--tx,0), var(--ty,0)) translate(-50%,-50%) scale(1.08); }
 }
 
 /* Premium tilt card: animated gradient border + spotlight */
